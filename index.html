@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Castle of Cards - Animated Towers</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="game-wrapper">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        
+        <div id="ui-layer">
+            <div class="stat-group">
+                <div class="stat">💰 <span id="gold">0</span></div>
+                <div class="stat">❤️ <span id="lives">10</span></div>
+                <div class="stat">🌊 <span id="wave">1/20</span></div>
+                <div class="stat">🗺️ Level <span id="level">1</span></div>
+            </div>
+            <button id="btn-pause" onclick="togglePause()">⏸️ Pause</button>
+        </div>
+
+        <div id="modal">
+            <h1 id="modal-title">Level Complete!</h1>
+            <button id="modal-btn" onclick="nextLevel()">Next Area</button>
+        </div>
+    </div>
+
+    <div id="controls">
+        <div class="tower-btn selected" onclick="selectTower('archer')" id="btn-archer">
+            <img id="img-archer-control" src="" width="24" height="24" alt="Archer">
+            <span>Archer</span>
+            <span style="font-size:12px;color:#bbb">50g | Fast</span>
+        </div>
+        <div class="tower-btn" onclick="selectTower('cannon')" id="btn-cannon">
+            <img id="img-cannon-control" src="" width="24" height="24" alt="Cannon">
+            <span>Cannon</span>
+            <span style="font-size:12px;color:#bbb">120g | Splash</span>
+        </div>
+        <div class="tower-btn" onclick="selectTower('ice')" id="btn-ice">
+            <img id="img-ice-control" src="" width="24" height="24" alt="Ice">
+            <span>Ice Mage</span>
+            <span style="font-size:12px;color:#bbb">200g | Slow</span>
+        </div>
+    </div>
+
+    <script src="assets.js"></script>
+    <script src="game.js"></script>
+
+</body>
+</html>
