@@ -14,7 +14,7 @@ const loadImage = (name, src) => {
             console.error(`Failed to load image: ${name} from ${src}`, e);
             reject(new Error(`Failed to load image: ${name}`));
         };
-        console.log(`Attempting to load image: ${name} from path: ${src}`); // Added log
+        //console.log(`Attempting to load image: ${name} from path: ${src}`); // Added log
         img.src = src; // This is now a file path, not a data URI
     });
 };
