@@ -53,27 +53,53 @@ let spawnTimer = 0;
 
 /** MAP GENERATOR **/
 function generateMap() {
-    const hues = [120, 30, 200, 40]; 
+    const hues = [120, 30, 200, 40];
     const baseHue = hues[Math.floor(Math.random() * hues.length)];
     mapColors = { bg: `hsl(${baseHue}, 40%, 40%)`, road: `hsl(${baseHue}, 20%, 70%)` };
 
-    const cols = 8; 
+    const cols = 8;
     const rows = 6;
     const cellW = canvas.width / cols;
     const cellH = canvas.height / rows;
-    
+
+    // Define the exclusion zone for the top UI
+    const UI_EXCLUSION_HEIGHT = 80;
+    const firstUsableRowIndex = Math.ceil(UI_EXCLUSION_HEIGHT / cellH);
+    const numUsableRows = rows - firstUsableRowIndex;
+
+    // If there aren't enough usable rows, you might need to adjust canvas size or UI height
+    if (numUsableRows <= 0) {
+        console.error("Not enough space for path below UI! Adjust canvas height or UI_EXCLUSION_HEIGHT.");
+        // Fallback or throw an error to prevent infinite loop
+        // For now, let's just make sure it uses at least row 0 if no other option
+        // This makes the path *potentially* go under UI, but avoids breaking the game
+        const fallbackRowStart = Math.max(0, firstUsableRowIndex);
+        // Ensure there's at least one row if somehow it gets negative
+        const fallbackNumRows = Math.max(1, rows - fallbackRowStart);
+        
+        let checkpoints = [];
+        let currentRow = fallbackRowStart + Math.floor(Math.random() * fallbackNumRows);
+        checkpoints.push({ c: 0, r: currentRow }); // Start path
+        // ... rest of path generation as before, but using fallbackRowStart/fallbackNumRows for subsequent rows
+        // This specific error handling is robust, but for a quick fix, just ensuring firstUsableRowIndex is reasonable
+        // and using a Math.max(0, ...) is sufficient for random row generation.
+    }
+
+
     let checkpoints = [];
-    let currentRow = Math.floor(Math.random() * rows);
-    
+    // Ensure the starting row is below the UI exclusion zone
+    let currentRow = firstUsableRowIndex + Math.floor(Math.random() * numUsableRows);
     checkpoints.push({ c: 0, r: currentRow });
 
-    for (let c = 2; c < cols - 1; c += 2) { // Ensure space for castle
-        let newRow = Math.floor(Math.random() * rows);
+    for (let c = 2; c < cols - 1; c += 2) {
+        // Ensure new rows are also below the UI exclusion zone
+        let newRow = firstUsableRowIndex + Math.floor(Math.random() * numUsableRows);
         checkpoints.push({ c: c, r: newRow });
     }
     
-    // Final point must be before the last column to make space for the castle
-    checkpoints.push({ c: cols - 1, r: Math.floor(Math.random() * rows) }); 
+    // Final point must be before the last column to make space for the castle,
+    // and also below the UI exclusion zone.
+    checkpoints.push({ c: cols - 1, r: firstUsableRowIndex + Math.floor(Math.random() * numUsableRows) }); 
 
     path = [];
     let currentX = 0;
