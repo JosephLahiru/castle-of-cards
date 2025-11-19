@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    background: #111;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    user-select: none;
+}
+#game-wrapper {
+    position: relative;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    border: 4px solid #333;
+}
+canvas { display: block; }
+#ui-layer {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    text-shadow: 2px 2px 0 #000;
+    height: 60px;
+}
+.stat-group { display: flex; gap: 20px; }
+.stat { font-size: 20px; font-weight: bold; }
+
+#btn-pause {
+    pointer-events: auto; 
+    background: #ff9800;
+    border: 2px solid #fff;
+    color: white;
+    font-weight: bold;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#btn-pause:hover { background: #e68900; }
+
+#controls {
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+    background: #222;
+    padding: 10px;
+    border-radius: 10px;
+}
+.tower-btn {
+    background: #444;
+    border: 2px solid #666;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.2s;
+    width: 100px;
+}
+.tower-btn:hover { background: #555; }
+.tower-btn.selected {
+    border-color: #4caf50;
+    background: #2e3b2f;
+    box-shadow: 0 0 10px #4caf50;
+}
+.tower-btn img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 5px;
+}
+
+#modal {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+#modal h1 { color: #ffeb3b; font-size: 40px; margin-bottom: 20px; }
+#modal button {
+    padding: 15px 40px;
+    font-size: 20px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
