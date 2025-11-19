@@ -448,6 +448,13 @@ function draw() {
         ctx.fillStyle = "white";
         ctx.font = "40px Arial";
         ctx.fillText("PAUSED", canvas.width/2, canvas.height/2);
+
+        ctx.font = "20px Arial"; 
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillStyle = "lightgray";
+
+        ctx.fillText("Made by Gemini and Joe !!!", canvas.width/2, canvas.height/2 + 40);
     }
 }
 
