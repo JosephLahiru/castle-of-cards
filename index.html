@@ -1,28 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Castle of Cards</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
 
     <div id="game-wrapper">
         <canvas id="gameCanvas" width="800" height="600"></canvas>
-        
+
         <div id="ui-layer">
             <div class="stat-group">
                 <div class="stat">💰 <span id="gold">0</span></div>
                 <div class="stat">❤️ <span id="lives">10</span></div>
                 <div class="stat">🌊 <span id="wave">1/10</span></div>
                 <div class="stat">🗺️ Level <span id="level">1</span></div>
+                <div class="stat">🏗️ <span id="tower-count">0/5</span> <button id="btn-buy-slot"
+                        onclick="buyTowerSlot()" style="font-size:12px; padding:2px 5px;">+Slot</button></div>
             </div>
-            <button id="btn-pause" onclick="togglePause()">⏸️ Pause</button>
+            <div style="display:flex; gap:10px;">
+                <button id="btn-speed" onclick="toggleSpeed()"
+                    style="background:#2196f3; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">1x
+                    Speed</button>
+                <button id="btn-pause" onclick="togglePause()">⏸️ Pause</button>
+            </div>
+        </div>
+
+        <div id="selection-ui"
+            style="display:none; position:absolute; background:rgba(0,0,0,0.8); padding:10px; border-radius:5px; pointer-events:auto; z-index:100;">
+            <div id="tower-info" style="color:white; margin-bottom:5px; font-weight:bold;">Archer Lv 1</div>
+            <button id="btn-upgrade" onclick="upgradeTower()"
+                style="background:#4caf50; color:white; border:none; padding:5px; margin-right:5px; cursor:pointer;">Upgrade</button>
+            <button id="btn-sell" onclick="sellTower()"
+                style="background:#f44336; color:white; border:none; padding:5px; cursor:pointer;">Sell</button>
         </div>
 
         <div id="modal">
             <h1 id="modal-title">Level Complete!</h1>
             <button id="modal-btn" onclick="nextLevel()">Next Area</button>
+        </div>
+
+        <div id="start-screen"
+            style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:20;">
+            <h1
+                style="color:#ffeb3b; font-family: 'Press Start 2P', cursive; font-size:40px; margin-bottom:20px; text-shadow: 4px 4px 0 #e65100; text-align:center; line-height:1.5;">
+                Castle of<br>Cards</h1>
+            <p style="color:#ccc; font-size:18px; margin-bottom:40px; font-family: 'Roboto', sans-serif;">Defend the
+                realm from the void creatures!</p>
+            <button onclick="startGame()"
+                style="padding:20px 60px; font-size:24px; background:#4caf50; color:white; border:none; border-radius:10px; cursor:pointer; font-weight:bold; box-shadow: 0 0 20px rgba(76, 175, 80, 0.5); font-family: 'Press Start 2P', cursive; font-size: 16px;">PLAY
+                GAME</button>
         </div>
     </div>
 
@@ -42,10 +74,21 @@
             <span>Ice Mage</span>
             <span style="font-size:12px;color:#bbb">200g | Slow</span>
         </div>
+        <div class="tower-btn" onclick="selectTower('sniper')" id="btn-sniper">
+            <img id="img-sniper-control" src="" width="24" height="24" alt="Sniper">
+            <span>Sniper</span>
+            <span style="font-size:12px;color:#bbb">300g | Long</span>
+        </div>
+        <div class="tower-btn" onclick="selectTower('tesla')" id="btn-tesla">
+            <img id="img-tesla-control" src="" width="24" height="24" alt="Tesla">
+            <span>Tesla</span>
+            <span style="font-size:12px;color:#bbb">400g | Chain</span>
+        </div>
     </div>
 
     <script src="assets.js"></script>
     <script src="game.js"></script>
 
 </body>
+
 </html>
