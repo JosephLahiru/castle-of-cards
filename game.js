@@ -28,7 +28,7 @@ const IMAGE_DISPLAY_SIZES = {
 /** DATA **/
 const towerStats = {
     archer: { cost: 50, range: 120, damage: 15, rate: 30, projectileSpeed: 12, icon: '🏹', type: 'single', turretImg: 'archer_turret', projectileImg: 'archer_projectile', name: 'Archer' },
-    cannon: { cost: 120, range: 120, damage: 50, rate: 80, projectileSpeed: 10, icon: '💣', type: 'area', turretImg: 'cannon_turret', projectileImg: 'cannon_projectile', name: 'Cannon' },
+    cannon: { cost: 120, range: 80, damage: 50, rate: 80, projectileSpeed: 10, icon: '💣', type: 'area', turretImg: 'cannon_turret', projectileImg: 'cannon_projectile', name: 'Cannon' },
     ice: { cost: 200, range: 100, damage: 5, rate: 10, projectileSpeed: 8, icon: '❄️', type: 'slow', turretImg: 'ice_turret', projectileImg: 'ice_projectile', name: 'Ice Mage' },
     sniper: { cost: 300, range: 300, damage: 100, rate: 120, projectileSpeed: 20, icon: '🎯', type: 'single', turretImg: 'sniper_turret', projectileImg: 'sniper_projectile', name: 'Sniper' },
     tesla: { cost: 400, range: 150, damage: 30, rate: 40, projectileSpeed: 15, icon: '⚡', type: 'chain', turretImg: 'tesla_turret', projectileImg: 'tesla_projectile', name: 'Tesla' }
