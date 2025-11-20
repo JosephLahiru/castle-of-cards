@@ -31,9 +31,17 @@ window.imagePromises = [
     loadImage('ice_turret', 'src/ice_turret.png'),
     loadImage('ice_projectile', 'src/ice_projectile.png'),
     loadImage('castle', 'src/castle.png'),
-    
+
     // Control Button Images
     loadImage('control_archer', 'src/control_archer.png'),
     loadImage('control_cannon', 'src/control_cannon.png'),
-    loadImage('control_ice', 'src/control_ice.png')
+    loadImage('control_ice', 'src/control_ice.png'),
+    loadImage('control_sniper', 'src/control_sniper.png'),
+    loadImage('control_tesla', 'src/control_tesla.png'),
+
+    // New Towers
+    loadImage('sniper_turret', 'src/sniper_turret.png'),
+    loadImage('sniper_projectile', 'src/sniper_projectile.png'),
+    loadImage('tesla_turret', 'src/tesla_turret.png'),
+    loadImage('tesla_projectile', 'src/tesla_projectile.png')
 ];
